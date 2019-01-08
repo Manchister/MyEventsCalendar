@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="card">
+      <h5 class="card-header">Events List</h5>
+      <div class="card-body">
+
+      	{% for flashMessage in app.session.flashbag.get('notice') %}
+      	<div class="alert alert-success">{{ flashMessage }}</div>
+      	{% endfor %}
+        
+        <table class="table table-dark">
+		  <thead>
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Event Name</th>
+		      <th scope="col">Category</th>
+		      <th scope="col">Details</th>
+		      <th scope="col">Date</th>
+		      <th scope="col">Actions</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+	  		{% for event in events %}
+		    <tr>
+		      <th scope="row">{{ event.id }}</th>
+		      <td>{{ event.title }}</td>
+		      <td>{{ event.category.name }}</td>
+		      <td>{{ event.details }}</td>
+		      <td>{{ event.day|date('Y-m-d h:i') }}</td>
+		      <td>
+		      	<a href="/events/edit/{{ event.id }}" class="btn btn-warning">Edit</a>
+		      	<a href="/events/delete/{{ event.id }}" class="btn btn-danger">Delete</a>
+		      </td>
+		    </tr>
+		    {% endfor %}
+		  </tbody>
+		</table>
+
+      </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="card">
+      <h5 class="card-header">Edit Category</h5>
+      <div class="card-body">
+
+      	{% for flashMessage in app.session.flashbag.get('notice') %}
+      	<div class="alert alert-success">{{ flashMessage }}</div>
+      	{% endfor %}
+        
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+
+      </div>
+    </div>
+{% endblock %}
